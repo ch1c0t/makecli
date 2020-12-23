@@ -1,0 +1,13 @@
+{
+  "name": "makecli",
+  "description": "A CLI app for making CLI apps",
+  "version": "0.0.0",
+  "bin": "./bin/makecli",
+  "scripts": {
+    "dev": "coffee --watch --compile --output lib src",
+    "test": "coffee ./test/all.coffee"
+  },
+  "devDependencies": {
+    "coffeescript": "^2.5.1"
+  }
+}
