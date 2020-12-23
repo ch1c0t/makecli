@@ -1,5 +1,5 @@
 {
-  "name": "makecli",
+  "name": "@ch1c0t/makecli",
   "description": "A CLI app for making CLI apps",
   "version": "0.0.0",
   "bin": "./bin/makecli",
