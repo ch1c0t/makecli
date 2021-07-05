@@ -5,9 +5,10 @@
   "bin": "./bin/makecli",
   "scripts": {
     "dev": "coffee --watch --compile --output lib src",
-    "test": "coffee ./test/all.coffee"
+    "test": "jasmine"
   },
   "devDependencies": {
-    "coffeescript": "^2.5.1"
+    "coffeescript": "^2.5.1",
+    "jasmine": "^3.8.0"
   }
 }
