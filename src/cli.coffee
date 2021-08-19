@@ -16,6 +16,6 @@ printHelp = ->
   console.log """
     A CLI app for making CLI apps.
 
-      new project_name    Create the directory named "project_name" and a new project inside of it.
+      new NAME            Create the directory named NAME and a new project inside of it.
       help                Show this message.
   """
