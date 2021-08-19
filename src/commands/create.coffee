@@ -16,6 +16,7 @@ exports.create = (name) ->
 
   spec =
     name: name
+    bin: "./bin/#{name}"
     version: '0.0.0'
     scripts:
       dev: "coffee --watch --compile --output lib src"
