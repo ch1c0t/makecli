@@ -1,7 +1,7 @@
 { create } = require './commands/create'
 
 exports.run = ->
-  [_node, _agn, command] = process.argv
+  [_node, _program, command] = process.argv
 
   switch command
     when 'new'
