@@ -7,6 +7,9 @@ exports.run = ->
     when 'new'
       name = process.argv[3]
       create name
+    when 'version'
+      { version } = require '../package.json'
+      console.log version
     when 'help'
       printHelp()
     else
@@ -17,5 +20,6 @@ printHelp = ->
     A CLI app for making CLI apps.
 
       new NAME            Create the directory named NAME and a new project inside of it.
+      version             Print the version.
       help                Show this message.
   """
