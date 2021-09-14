@@ -6,10 +6,7 @@ sh = (command) ->
       resolve { error, stdout, stderr }
 
 describe 'Zero', ->
-  it 'works', ->
-    expect(0).toEqual 0
+  it 'prints the help', ->
+    response = await sh './bin/makecli'
 
-  it 'works 2', ->
-    response = await sh 'ls spec'
-
-    expect(response.stdout).toContain 'support'
+    expect(response.stdout).toContain 'A CLI to make CLIs'

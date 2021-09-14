@@ -17,7 +17,7 @@ exports.run = ->
 
 printHelp = ->
   console.log """
-    A CLI app for making CLI apps.
+    A CLI to make CLIs(with Node.js and CoffeeScript).
 
       new NAME            Create the directory named NAME and a new project inside of it.
       version             Print the version.
