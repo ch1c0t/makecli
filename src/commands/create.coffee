@@ -1,6 +1,7 @@
 path = require 'path'
 fs = require 'fs'
 
+{ CreateSrc } = require './create/src'
 { CreateJasmineSetup } = require './create/jasmine_setup'
 
 CWD = process.cwd()
@@ -31,8 +32,11 @@ exports.create = (name) ->
 
   createPackageFile spec
   createBin name
-  createSrc()
-  CreateJasmineSetup { name, directory: DIR }
+  await CreateSrc { name, directory: "#{DIR}/src" }
+  await CreateJasmineSetup { name, directory: DIR }
+
+  { exec } = require 'child_process'
+  exec 'npm install', cwd: DIR
 
 createPackageFile = (spec) ->
   source = JSON.stringify spec, null, 2
@@ -45,21 +49,3 @@ createBin = (name) ->
   source = fs.readFileSync "#{ROOT}/bin/makecli", 'utf-8'
 
   fs.writeFileSync "#{bin}/#{name}", (source.replace 'makecli', name)
-
-createSrc = ->
-  src = "#{DIR}/src"
-  fs.mkdirSync src
-
-  createCli src
-  createCreateCommand src
-
-createCli = (src) ->
-  fs.copyFile "#{ROOT}/src/cli.coffee", "#{src}/cli.coffee", (error) ->
-    throw error if error
-
-createCreateCommand = (src) ->
-  commands = "#{src}/commands"
-  fs.mkdirSync commands
-
-  fs.copyFile "#{ROOT}/src/commands/create.coffee", "#{commands}/create.coffee", (error) ->
-    throw error if error
