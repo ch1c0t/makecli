@@ -4,7 +4,9 @@
   "version": "0.0.4",
   "bin": "./bin/makecli",
   "scripts": {
-    "dev": "coffee --watch --compile --output lib src",
+    "install": "npm run build",
+    "build": "coffee --compile --output lib src",
+    "start": "coffee --watch --compile --output lib src",
     "test": "jasmine"
   },
   "devDependencies": {

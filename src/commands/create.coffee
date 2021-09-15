@@ -22,7 +22,9 @@ exports.create = (name) ->
     bin: "./bin/#{name}"
     version: '0.0.0'
     scripts:
-      dev: "coffee --watch --compile --output lib src"
+      install: "npm run build"
+      build: "coffee --compile --output lib src"
+      start: "coffee --watch --compile --output lib src"
       test: "jasmine"
     dependencies:
       "@ch1c0t/io": "^0.0.2"
