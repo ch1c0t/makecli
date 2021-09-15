@@ -32,8 +32,8 @@ exports.create = (name) ->
       coffeescript: "^2.5.1"
       jasmine: "^3.9.0"
 
-  createPackageFile spec
-  createBin name
+  await createPackageFile spec
+  await createBin name
   await CreateSrc { name, directory: "#{DIR}/src" }
   await CreateJasmineSetup { name, directory: DIR }
 
@@ -42,12 +42,16 @@ exports.create = (name) ->
 
 createPackageFile = (spec) ->
   source = JSON.stringify spec, null, 2
-  fs.writeFileSync "#{DIR}/package.json", source
+  IO.write "#{DIR}/package.json", source
 
 createBin = (name) ->
   bin = "#{DIR}/bin"
-  fs.mkdirSync bin
+  await IO.mkdir bin
 
-  source = fs.readFileSync "#{ROOT}/bin/makecli", 'utf-8'
+  source = await IO.read "#{ROOT}/bin/makecli"
 
-  fs.writeFileSync "#{bin}/#{name}", (source.replace 'makecli', name)
+  file = "#{bin}/#{name}"
+  await IO.write file, (source.replace 'makecli', name)
+
+  fs.chmodSync file, '755'
+
