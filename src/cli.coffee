@@ -1,3 +1,5 @@
+require '@ch1c0t/io'
+
 { create } = require './commands/create'
 
 exports.run = ->

@@ -1,9 +1,11 @@
 path = require 'path'
 fs = require 'fs'
 
+{ CreateJasmineSetup } = require './create/jasmine_setup'
+
 CWD = process.cwd()
 DIR = "/tmp/makecli/path"
-ROOT = path.dirname path.dirname __dirname
+global.ROOT = path.dirname path.dirname __dirname
 
 exports.create = (name) ->
   DIR = "#{CWD}/#{name}"
@@ -20,14 +22,17 @@ exports.create = (name) ->
     version: '0.0.0'
     scripts:
       dev: "coffee --watch --compile --output lib src"
-      test: "coffee ./test/all.coffee"
+      test: "jasmine"
+    dependencies:
+      "@ch1c0t/io": "^0.0.2"
     devDependencies:
       coffeescript: "^2.5.1"
+      jasmine: "^3.9.0"
 
   createPackageFile spec
   createBin name
   createSrc()
-  createTests()
+  CreateJasmineSetup { name, directory: DIR }
 
 createPackageFile = (spec) ->
   source = JSON.stringify spec, null, 2
@@ -58,13 +63,3 @@ createCreateCommand = (src) ->
 
   fs.copyFile "#{ROOT}/src/commands/create.coffee", "#{commands}/create.coffee", (error) ->
     throw error if error
-
-createTests = ->
-  test = "#{DIR}/test"
-  fs.mkdirSync test
-
-  source = """
-    console.log 'No tests yet.'
-  """
-
-  fs.writeFileSync "#{test}/all.coffee", source

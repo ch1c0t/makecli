@@ -10,5 +10,8 @@
   "devDependencies": {
     "coffeescript": "^2.5.1",
     "jasmine": "^3.8.0"
+  },
+  "dependencies": {
+    "@ch1c0t/io": "^0.0.2"
   }
 }
