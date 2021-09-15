@@ -1,7 +1,7 @@
 {
   "name": "@ch1c0t/makecli",
-  "description": "A CLI app for making CLI apps",
-  "version": "0.0.4",
+  "description": "A CLI to make CLIs",
+  "version": "0.0.5",
   "bin": "./bin/makecli",
   "scripts": {
     "install": "npm run build",
