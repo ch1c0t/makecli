@@ -22,12 +22,12 @@ exports.create = (name) ->
     bin: "./bin/#{name}"
     version: '0.0.0'
     scripts:
-      install: "npm run build"
       build: "coffee --compile --output lib src"
       start: "coffee --watch --compile --output lib src"
       test: "jasmine"
     dependencies:
       "@ch1c0t/io": "^0.0.2"
+      "@ch1c0t/sh": "^0.0.1"
     devDependencies:
       coffeescript: "^2.5.1"
       jasmine: "^3.9.0"
@@ -37,8 +37,9 @@ exports.create = (name) ->
   await CreateSrc { name, directory: "#{DIR}/src" }
   await CreateJasmineSetup { name, directory: DIR }
 
-  { exec } = require 'child_process'
-  exec 'npm install', cwd: DIR
+  { sh } = require '@ch1c0t/sh'
+  await sh 'npm install', cwd: DIR
+  await sh 'npm run build', cwd: DIR
 
 createPackageFile = (spec) ->
   source = JSON.stringify spec, null, 2
