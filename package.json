@@ -1,7 +1,7 @@
 {
   "name": "@ch1c0t/makecli",
   "description": "A CLI to make CLIs",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "bin": "./bin/makecli",
   "scripts": {
     "build": "coffee --compile --output lib src",
