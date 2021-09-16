@@ -1,5 +1,4 @@
 path = require 'path'
-fs = require 'fs'
 
 { CreateSrc } = require './create/src'
 { CreateJasmineSetup } = require './create/jasmine_setup'
@@ -11,11 +10,11 @@ global.ROOT = path.dirname path.dirname __dirname
 exports.create = (name) ->
   DIR = "#{CWD}/#{name}"
 
-  if fs.existsSync DIR
+  if IO.exist DIR
     console.error "#{DIR} already exists."
     process.exit 1
   else
-    fs.mkdirSync DIR
+    await IO.mkdir DIR
 
   spec =
     name: name
@@ -26,7 +25,7 @@ exports.create = (name) ->
       start: "coffee --watch --compile --output lib src"
       test: "jasmine"
     dependencies:
-      "@ch1c0t/io": "^0.0.2"
+      "@ch1c0t/io": "^0.0.3"
       "@ch1c0t/sh": "^0.0.1"
     devDependencies:
       coffeescript: "^2.5.1"
@@ -53,6 +52,4 @@ createBin = (name) ->
 
   file = "#{bin}/#{name}"
   await IO.write file, (source.replace 'makecli', name)
-
-  fs.chmodSync file, '755'
-
+  await IO.chmod file, '755'
