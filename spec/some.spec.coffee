@@ -1,9 +1,4 @@
-{ exec } = require 'child_process'
-
-sh = (command) ->
-  new Promise (resolve) ->
-    exec command, (error, stdout, stderr) ->
-      resolve { error, stdout, stderr }
+{ sh } = require '@ch1c0t/sh'
 
 describe 'Zero', ->
   it 'prints the help', ->

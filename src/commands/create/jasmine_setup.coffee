@@ -1,26 +1,15 @@
+{ sh } = require '@ch1c0t/sh'
+
 CreateJasmineSetup = ({ name, directory }) ->
   SpecDirectory = "#{directory}/spec"
   await IO.mkdir SpecDirectory
   
-  SupportDirectory = "#{SpecDirectory}/support"
-  await IO.mkdir SupportDirectory
-
-  await IO.copy "#{ROOT}/spec/support/jasmine.json",
-                "#{SupportDirectory}/jasmine.json"
-
-  await IO.copy "#{ROOT}/spec/support/coffee.js",
-                "#{SupportDirectory}/coffee.js"
-
+  await sh "cp -r #{ROOT}/spec/support #{SpecDirectory}/support"
   await CreateSomeSpec { name, directory: SpecDirectory }
 
 CreateSomeSpec = ({ name, directory }) ->
   source = """
-    { exec } = require 'child_process'
-
-    sh = (command) ->
-      new Promise (resolve) ->
-        exec command, (error, stdout, stderr) ->
-          resolve { error, stdout, stderr }
+    { sh } = require '@ch1c0t/sh'
 
     describe 'Some', ->
       it 'prints the help', ->
