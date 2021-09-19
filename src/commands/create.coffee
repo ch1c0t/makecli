@@ -35,6 +35,7 @@ exports.create = (name) ->
   await createBin name
   await CreateSrc { name, directory: "#{DIR}/src" }
   await CreateJasmineSetup { name, directory: DIR }
+  await IO.copy "#{ROOT}/.gitignore", "#{DIR}/.gitignore"
 
   { sh } = require '@ch1c0t/sh'
   await sh 'npm install', cwd: DIR
