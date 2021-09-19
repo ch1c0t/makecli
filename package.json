@@ -1,8 +1,14 @@
 {
   "name": "@ch1c0t/makecli",
   "description": "A CLI to make CLIs",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "bin": "./bin/makecli",
+  "author": "Anatoly Chernov <chertoly@gmail.com>",
+  "license": "BSD0",
+  "keywords": [
+    "coffeescript",
+    "cli"
+  ],
   "scripts": {
     "build": "coffee --compile --output lib src",
     "start": "coffee --watch --compile --output lib src",
