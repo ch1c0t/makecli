@@ -1,22 +1,21 @@
 { sh } = require '@ch1c0t/sh'
 
 CreateJasmineSetup = ({ name, directory }) ->
-  SpecDirectory = "#{directory}/spec"
-  await IO.mkdir SpecDirectory
-  
-  await sh "cp -r #{ROOT}/spec/support #{SpecDirectory}/support"
-  await CreateSomeSpec { name, directory: SpecDirectory }
+  await IO.mkdir directory
+  await sh "cp -r #{ROOT}/spec/support #{directory}/support"
+  await CreateSomeSpec { name, directory }
 
 CreateSomeSpec = ({ name, directory }) ->
   source = """
     { sh } = require '@ch1c0t/sh'
 
-    describe 'Some', ->
+    describe 'help', ->
       it 'prints the help', ->
         response = await sh './bin/#{name}'
         expect(response.stdout).toContain 'A CLI to make CLIs'
   """
 
-  IO.write "#{directory}/some.spec.coffee", source
+  await IO.mkdir "#{directory}/cli"
+  IO.write "#{directory}/cli/help.spec.coffee", source
 
 module.exports = { CreateJasmineSetup }
