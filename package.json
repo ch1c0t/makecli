@@ -1,10 +1,14 @@
 {
   "name": "@ch1c0t/makecli",
   "description": "A CLI to make CLIs",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "bin": "./bin/makecli",
   "author": "Anatoly Chernov <chertoly@gmail.com>",
   "license": "BSD0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ch1c0t/makecli"
+  },
   "keywords": [
     "coffeescript",
     "cli"
